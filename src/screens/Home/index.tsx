@@ -1,6 +1,48 @@
-import { Text } from "react-native";
-function Home() {
-  return <Text>Home</Text>;
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import ProfileScreen from "./ProfileScreen";
+import QuizScreen from "./QuizScreen";
+
+const Tab = createBottomTabNavigator();
+function HomeNavigator() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Quiz"
+      screenOptions={{
+        tabBarActiveTintColor: "#e91e63",
+        headerShown: false,
+        tabBarLabelStyle: {
+          marginBottom: 5,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Quiz"
+        component={QuizScreen}
+        options={{
+          tabBarLabel: "Асуулт",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="alarm-snooze"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Хэрэглэгч",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
-export default Home;
+export default HomeNavigator;
