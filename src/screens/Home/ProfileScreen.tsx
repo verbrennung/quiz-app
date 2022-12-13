@@ -29,7 +29,7 @@ function ProfileScreen() {
     if (user) {
       fetch(user?.uid);
     }
-  }, [user]);
+  });
 
   return (
     <View style={styles.container}>

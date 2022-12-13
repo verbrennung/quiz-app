@@ -11,7 +11,6 @@ function HomeNavigator() {
       initialRouteName="Quiz"
       screenOptions={{
         tabBarActiveTintColor: "#e91e63",
-        headerShown: false,
         tabBarLabelStyle: {
           marginBottom: 5,
         },
@@ -21,6 +20,7 @@ function HomeNavigator() {
         name="Quiz"
         component={QuizScreen}
         options={{
+          headerTitle: "Асуулт",
           tabBarLabel: "Асуулт",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -35,6 +35,7 @@ function HomeNavigator() {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerTitle: "Хэрэглэгч",
           tabBarLabel: "Хэрэглэгч",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />

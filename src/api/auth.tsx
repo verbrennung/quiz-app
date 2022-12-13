@@ -1,5 +1,11 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../../firebase";
 
 type CreateUserType = {
@@ -37,6 +43,20 @@ export const getMe = async (uid: string) => {
     const docRef = doc(db, "users", uid);
     const user = await getDoc(docRef);
     return Promise.resolve(user.data());
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const updateUserPoint = async (uid: string, score: number) => {
+  try {
+    const docRef = doc(db, "users", uid);
+    const user = await getDoc(docRef);
+    const sumScore = (user.data()?.point | 0) + score;
+    await updateDoc(docRef, {
+      point: sumScore,
+    });
+    return Promise.resolve(true);
   } catch (error) {
     return Promise.reject(error);
   }
